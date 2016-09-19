@@ -75,11 +75,11 @@
         </AsyncRoot>
 
         <!-- sql 以及耗费的执行时间 -->
-        <Logger name="log4jdbc.log4j2" level="info" additivity="false">
+        <AsyncLogger name="log4jdbc.log4j2" level="info" additivity="false">
             <MarkerFilter marker="LOG4JDBC_NON_STATEMENT" onMatch="DENY" onMismatch="NEUTRAL"/>
             <AppenderRef ref="console"/>
             <AppenderRef ref="rollingLog4jdbcFile"/>
-        </Logger>
+        </AsyncLogger>
 
         <!--<Logger name="log4jdbc.log4j2" level="info" additivity="false">-->
             <!--<MarkerFilter marker="LOG4JDBC_AUDIT" onMatch="ACCEPT" onMismatch="DENY"/>-->

@@ -1,4 +1,4 @@
-package org.mycommon.springboot.domain;
+package org.mycommon.springboot.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by KangXinghua on 2016/9/19.
  */
-public class DataBase extends IdBase {
+public class DataModel extends IdModel {
     protected String createBy;    // 创建者
     protected String createByName;    // 创建者
     protected Date createTime;// 创建日期

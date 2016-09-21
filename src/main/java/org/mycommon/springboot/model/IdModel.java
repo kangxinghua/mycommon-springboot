@@ -1,9 +1,9 @@
-package org.mycommon.springboot.domain;
+package org.mycommon.springboot.model;
 
 /**
  * Created by KangXinghua on 2016/9/19.
  */
-public class IdBase {
+public class IdModel {
     protected String id;
     protected Boolean deleted; // 删除标记（0：正常；1：删除；）
     protected Integer version; //版本控制

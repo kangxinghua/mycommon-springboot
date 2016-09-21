@@ -1,10 +1,707 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.mycommon.springboot.mapper.UserMapperGen">
-    <!-- findAll -->
-    <select id="findAll" resultType="User">
-        select * from sys_user
+    <!-- ===========================================代码生成开始============================================ -->
+    <!-- 暂时不用缓存 <cache/> -->
+
+    <resultMap id="UserModelResultMap" type="org.mycommon.springboot.model.UserModel">
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="realName" column="realName"/>
+        <result property="lastLoginTime" column="lastLoginTime"/>
+        <result property="lastLoginIp" column="lastLoginIp"/>
+        <result property="createBy" column="createBy"/>
+        <result property="createByName" column="createByName"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateBy" column="updateBy"/>
+        <result property="updateByName" column="updateByName"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="deleted" column="deleted"/>
+        <result property="version" column="version"/>
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="userColumns">
+        sys_user.userName,
+        sys_user.password,
+        sys_user.salt,
+        sys_user.realName,
+        sys_user.lastLoginTime,
+        sys_user.lastLoginIp,
+        sys_user.createBy,
+        sys_user.createByName,
+        sys_user.createTime,
+        sys_user.updateBy,
+        sys_user.updateByName,
+        sys_user.updateTime,
+        sys_user.deleted,
+        sys_user.version
+    </sql>
+
+    <sql id="userValues">
+        #{userName},
+        #{password},
+        #{salt},
+        #{realName},
+        #{lastLoginTime},
+        #{lastLoginIp},
+        #{createBy},
+        #{createByName},
+        #{createTime},
+        #{updateBy},
+        #{updateByName},
+        #{updateTime},
+        FALSE,
+        0
+    </sql>
+
+    <sql id="userValuesBatch">
+        #{item.userName},
+        #{item.password},
+        #{item.salt},
+        #{item.realName},
+        #{item.lastLoginTime},
+        #{item.lastLoginIp},
+        #{item.createBy},
+        #{item.createByName},
+        #{item.createTime},
+        #{item.updateBy},
+        #{item.updateByName},
+        #{item.updateTime},
+        FALSE,
+        0
+    </sql>
+
+    <sql id="userSets">
+        <if test="userName != null">userName=#{userName},</if>
+        <if test="password != null">password=#{password},</if>
+        <if test="salt != null">salt=#{salt},</if>
+        <if test="realName != null">realName=#{realName},</if>
+        <if test="lastLoginTime != null">lastLoginTime=#{lastLoginTime},</if>
+        <if test="lastLoginIp != null">lastLoginIp=#{lastLoginIp},</if>
+        <if test="createBy != null">createBy=#{createBy},</if>
+        <if test="createByName != null">createByName=#{createByName},</if>
+        <if test="createTime != null">createTime=#{createTime},</if>
+        <if test="updateBy != null">updateBy=#{updateBy},</if>
+        <if test="updateByName != null">updateByName=#{updateByName},</if>
+        <if test="updateTime != null">updateTime=#{updateTime},</if>
+        <if test="deleted != null">deleted=#{deleted},</if>
+        `version`=`version`+1
+    </sql>
+
+    <sql id="userWheres">
+        sys_user.`deleted`=FALSE
+        <!-- userName 开始 -->
+        <if test="EQ_userName !=null and EQ_userName !=''">
+            AND sys_user.userName = #{EQ_userName}
+        </if>
+        <if test="NEQ_userName !=null and NEQ_userName !=''">
+            AND sys_user.userName != #{NEQ_userName}
+        </if>
+        <if test="LIKE_userName !=null and LIKE_userName !=''">
+            AND sys_user.userName like CONCAT('%',#{LIKE_userName},'%')
+        </if>
+        <if test="LIKEP_userName !=null and LIKEP_userName !=''">
+            AND sys_user.userName like CONCAT(#{LIKEP_userName},'%')
+        </if>
+        <if test="PLIKE_userName !=null and PLIKE_userName !=''">
+            AND sys_user.userName like CONCAT('%',#{PLIKE_userName})
+        </if>
+        <if test="GT_userName !=null and GT_userName !=''">
+            AND sys_user.userName > #{GT_userName}
+        </if>
+        <if test="LT_userName !=null and LT_userName !=''">
+            AND sys_user.userName &lt; #{LT_userName}
+        </if>
+        <if test="GTE_userName !=null and GTE_userName !=''">
+            AND sys_user.userName >= #{GTE_userName}
+        </if>
+        <if test="LTE_userName !=null and LTE_userName !=''">
+            AND sys_user.userName &lt;= #{LTE_userName}
+        </if>
+        <if test="IN_userName !=null and IN_userName !=''">
+            AND sys_user.userName IN
+            <foreach item="item" index="index" collection="IN_userName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_userName !=null and NIN_userName !=''">
+            AND sys_user.userName NOT IN
+            <foreach item="item" index="index" collection="NIN_userName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- userName 结束 -->
+        <!-- password 开始 -->
+        <if test="EQ_password !=null and EQ_password !=''">
+            AND sys_user.password = #{EQ_password}
+        </if>
+        <if test="NEQ_password !=null and NEQ_password !=''">
+            AND sys_user.password != #{NEQ_password}
+        </if>
+        <if test="LIKE_password !=null and LIKE_password !=''">
+            AND sys_user.password like CONCAT('%',#{LIKE_password},'%')
+        </if>
+        <if test="LIKEP_password !=null and LIKEP_password !=''">
+            AND sys_user.password like CONCAT(#{LIKEP_password},'%')
+        </if>
+        <if test="PLIKE_password !=null and PLIKE_password !=''">
+            AND sys_user.password like CONCAT('%',#{PLIKE_password})
+        </if>
+        <if test="GT_password !=null and GT_password !=''">
+            AND sys_user.password > #{GT_password}
+        </if>
+        <if test="LT_password !=null and LT_password !=''">
+            AND sys_user.password &lt; #{LT_password}
+        </if>
+        <if test="GTE_password !=null and GTE_password !=''">
+            AND sys_user.password >= #{GTE_password}
+        </if>
+        <if test="LTE_password !=null and LTE_password !=''">
+            AND sys_user.password &lt;= #{LTE_password}
+        </if>
+        <if test="IN_password !=null and IN_password !=''">
+            AND sys_user.password IN
+            <foreach item="item" index="index" collection="IN_password"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_password !=null and NIN_password !=''">
+            AND sys_user.password NOT IN
+            <foreach item="item" index="index" collection="NIN_password"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- password 结束 -->
+        <!-- salt 开始 -->
+        <if test="EQ_salt !=null and EQ_salt !=''">
+            AND sys_user.salt = #{EQ_salt}
+        </if>
+        <if test="NEQ_salt !=null and NEQ_salt !=''">
+            AND sys_user.salt != #{NEQ_salt}
+        </if>
+        <if test="LIKE_salt !=null and LIKE_salt !=''">
+            AND sys_user.salt like CONCAT('%',#{LIKE_salt},'%')
+        </if>
+        <if test="LIKEP_salt !=null and LIKEP_salt !=''">
+            AND sys_user.salt like CONCAT(#{LIKEP_salt},'%')
+        </if>
+        <if test="PLIKE_salt !=null and PLIKE_salt !=''">
+            AND sys_user.salt like CONCAT('%',#{PLIKE_salt})
+        </if>
+        <if test="GT_salt !=null and GT_salt !=''">
+            AND sys_user.salt > #{GT_salt}
+        </if>
+        <if test="LT_salt !=null and LT_salt !=''">
+            AND sys_user.salt &lt; #{LT_salt}
+        </if>
+        <if test="GTE_salt !=null and GTE_salt !=''">
+            AND sys_user.salt >= #{GTE_salt}
+        </if>
+        <if test="LTE_salt !=null and LTE_salt !=''">
+            AND sys_user.salt &lt;= #{LTE_salt}
+        </if>
+        <if test="IN_salt !=null and IN_salt !=''">
+            AND sys_user.salt IN
+            <foreach item="item" index="index" collection="IN_salt"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_salt !=null and NIN_salt !=''">
+            AND sys_user.salt NOT IN
+            <foreach item="item" index="index" collection="NIN_salt"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- salt 结束 -->
+        <!-- realName 开始 -->
+        <if test="EQ_realName !=null and EQ_realName !=''">
+            AND sys_user.realName = #{EQ_realName}
+        </if>
+        <if test="NEQ_realName !=null and NEQ_realName !=''">
+            AND sys_user.realName != #{NEQ_realName}
+        </if>
+        <if test="LIKE_realName !=null and LIKE_realName !=''">
+            AND sys_user.realName like CONCAT('%',#{LIKE_realName},'%')
+        </if>
+        <if test="LIKEP_realName !=null and LIKEP_realName !=''">
+            AND sys_user.realName like CONCAT(#{LIKEP_realName},'%')
+        </if>
+        <if test="PLIKE_realName !=null and PLIKE_realName !=''">
+            AND sys_user.realName like CONCAT('%',#{PLIKE_realName})
+        </if>
+        <if test="GT_realName !=null and GT_realName !=''">
+            AND sys_user.realName > #{GT_realName}
+        </if>
+        <if test="LT_realName !=null and LT_realName !=''">
+            AND sys_user.realName &lt; #{LT_realName}
+        </if>
+        <if test="GTE_realName !=null and GTE_realName !=''">
+            AND sys_user.realName >= #{GTE_realName}
+        </if>
+        <if test="LTE_realName !=null and LTE_realName !=''">
+            AND sys_user.realName &lt;= #{LTE_realName}
+        </if>
+        <if test="IN_realName !=null and IN_realName !=''">
+            AND sys_user.realName IN
+            <foreach item="item" index="index" collection="IN_realName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_realName !=null and NIN_realName !=''">
+            AND sys_user.realName NOT IN
+            <foreach item="item" index="index" collection="NIN_realName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- realName 结束 -->
+        <!-- lastLoginTime 开始 -->
+        <if test="EQ_lastLoginTime !=null and EQ_lastLoginTime !=''">
+            AND sys_user.lastLoginTime = #{EQ_lastLoginTime}
+        </if>
+        <if test="NEQ_lastLoginTime !=null and NEQ_lastLoginTime !=''">
+            AND sys_user.lastLoginTime != #{NEQ_lastLoginTime}
+        </if>
+        <if test="LIKE_lastLoginTime !=null and LIKE_lastLoginTime !=''">
+            AND sys_user.lastLoginTime like CONCAT('%',#{LIKE_lastLoginTime},'%')
+        </if>
+        <if test="LIKEP_lastLoginTime !=null and LIKEP_lastLoginTime !=''">
+            AND sys_user.lastLoginTime like CONCAT(#{LIKEP_lastLoginTime},'%')
+        </if>
+        <if test="PLIKE_lastLoginTime !=null and PLIKE_lastLoginTime !=''">
+            AND sys_user.lastLoginTime like CONCAT('%',#{PLIKE_lastLoginTime})
+        </if>
+        <if test="GT_lastLoginTime !=null and GT_lastLoginTime !=''">
+            AND sys_user.lastLoginTime > #{GT_lastLoginTime}
+        </if>
+        <if test="LT_lastLoginTime !=null and LT_lastLoginTime !=''">
+            AND sys_user.lastLoginTime &lt; #{LT_lastLoginTime}
+        </if>
+        <if test="GTE_lastLoginTime !=null and GTE_lastLoginTime !=''">
+            AND sys_user.lastLoginTime >= #{GTE_lastLoginTime}
+        </if>
+        <if test="LTE_lastLoginTime !=null and LTE_lastLoginTime !=''">
+            AND sys_user.lastLoginTime &lt;= #{LTE_lastLoginTime}
+        </if>
+        <if test="IN_lastLoginTime !=null and IN_lastLoginTime !=''">
+            AND sys_user.lastLoginTime IN
+            <foreach item="item" index="index" collection="IN_lastLoginTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_lastLoginTime !=null and NIN_lastLoginTime !=''">
+            AND sys_user.lastLoginTime NOT IN
+            <foreach item="item" index="index" collection="NIN_lastLoginTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- lastLoginTime 结束 -->
+        <!-- lastLoginIp 开始 -->
+        <if test="EQ_lastLoginIp !=null and EQ_lastLoginIp !=''">
+            AND sys_user.lastLoginIp = #{EQ_lastLoginIp}
+        </if>
+        <if test="NEQ_lastLoginIp !=null and NEQ_lastLoginIp !=''">
+            AND sys_user.lastLoginIp != #{NEQ_lastLoginIp}
+        </if>
+        <if test="LIKE_lastLoginIp !=null and LIKE_lastLoginIp !=''">
+            AND sys_user.lastLoginIp like CONCAT('%',#{LIKE_lastLoginIp},'%')
+        </if>
+        <if test="LIKEP_lastLoginIp !=null and LIKEP_lastLoginIp !=''">
+            AND sys_user.lastLoginIp like CONCAT(#{LIKEP_lastLoginIp},'%')
+        </if>
+        <if test="PLIKE_lastLoginIp !=null and PLIKE_lastLoginIp !=''">
+            AND sys_user.lastLoginIp like CONCAT('%',#{PLIKE_lastLoginIp})
+        </if>
+        <if test="GT_lastLoginIp !=null and GT_lastLoginIp !=''">
+            AND sys_user.lastLoginIp > #{GT_lastLoginIp}
+        </if>
+        <if test="LT_lastLoginIp !=null and LT_lastLoginIp !=''">
+            AND sys_user.lastLoginIp &lt; #{LT_lastLoginIp}
+        </if>
+        <if test="GTE_lastLoginIp !=null and GTE_lastLoginIp !=''">
+            AND sys_user.lastLoginIp >= #{GTE_lastLoginIp}
+        </if>
+        <if test="LTE_lastLoginIp !=null and LTE_lastLoginIp !=''">
+            AND sys_user.lastLoginIp &lt;= #{LTE_lastLoginIp}
+        </if>
+        <if test="IN_lastLoginIp !=null and IN_lastLoginIp !=''">
+            AND sys_user.lastLoginIp IN
+            <foreach item="item" index="index" collection="IN_lastLoginIp"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_lastLoginIp !=null and NIN_lastLoginIp !=''">
+            AND sys_user.lastLoginIp NOT IN
+            <foreach item="item" index="index" collection="NIN_lastLoginIp"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- lastLoginIp 结束 -->
+        <!-- createBy 开始 -->
+        <if test="EQ_createBy !=null and EQ_createBy !=''">
+            AND sys_user.createBy = #{EQ_createBy}
+        </if>
+        <if test="NEQ_createBy !=null and NEQ_createBy !=''">
+            AND sys_user.createBy != #{NEQ_createBy}
+        </if>
+        <if test="LIKE_createBy !=null and LIKE_createBy !=''">
+            AND sys_user.createBy like CONCAT('%',#{LIKE_createBy},'%')
+        </if>
+        <if test="LIKEP_createBy !=null and LIKEP_createBy !=''">
+            AND sys_user.createBy like CONCAT(#{LIKEP_createBy},'%')
+        </if>
+        <if test="PLIKE_createBy !=null and PLIKE_createBy !=''">
+            AND sys_user.createBy like CONCAT('%',#{PLIKE_createBy})
+        </if>
+        <if test="GT_createBy !=null and GT_createBy !=''">
+            AND sys_user.createBy > #{GT_createBy}
+        </if>
+        <if test="LT_createBy !=null and LT_createBy !=''">
+            AND sys_user.createBy &lt; #{LT_createBy}
+        </if>
+        <if test="GTE_createBy !=null and GTE_createBy !=''">
+            AND sys_user.createBy >= #{GTE_createBy}
+        </if>
+        <if test="LTE_createBy !=null and LTE_createBy !=''">
+            AND sys_user.createBy &lt;= #{LTE_createBy}
+        </if>
+        <if test="IN_createBy !=null and IN_createBy !=''">
+            AND sys_user.createBy IN
+            <foreach item="item" index="index" collection="IN_createBy"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_createBy !=null and NIN_createBy !=''">
+            AND sys_user.createBy NOT IN
+            <foreach item="item" index="index" collection="NIN_createBy"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- createBy 结束 -->
+        <!-- createByName 开始 -->
+        <if test="EQ_createByName !=null and EQ_createByName !=''">
+            AND sys_user.createByName = #{EQ_createByName}
+        </if>
+        <if test="NEQ_createByName !=null and NEQ_createByName !=''">
+            AND sys_user.createByName != #{NEQ_createByName}
+        </if>
+        <if test="LIKE_createByName !=null and LIKE_createByName !=''">
+            AND sys_user.createByName like CONCAT('%',#{LIKE_createByName},'%')
+        </if>
+        <if test="LIKEP_createByName !=null and LIKEP_createByName !=''">
+            AND sys_user.createByName like CONCAT(#{LIKEP_createByName},'%')
+        </if>
+        <if test="PLIKE_createByName !=null and PLIKE_createByName !=''">
+            AND sys_user.createByName like CONCAT('%',#{PLIKE_createByName})
+        </if>
+        <if test="GT_createByName !=null and GT_createByName !=''">
+            AND sys_user.createByName > #{GT_createByName}
+        </if>
+        <if test="LT_createByName !=null and LT_createByName !=''">
+            AND sys_user.createByName &lt; #{LT_createByName}
+        </if>
+        <if test="GTE_createByName !=null and GTE_createByName !=''">
+            AND sys_user.createByName >= #{GTE_createByName}
+        </if>
+        <if test="LTE_createByName !=null and LTE_createByName !=''">
+            AND sys_user.createByName &lt;= #{LTE_createByName}
+        </if>
+        <if test="IN_createByName !=null and IN_createByName !=''">
+            AND sys_user.createByName IN
+            <foreach item="item" index="index" collection="IN_createByName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_createByName !=null and NIN_createByName !=''">
+            AND sys_user.createByName NOT IN
+            <foreach item="item" index="index" collection="NIN_createByName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- createByName 结束 -->
+        <!-- createTime 开始 -->
+        <if test="EQ_createTime !=null and EQ_createTime !=''">
+            AND sys_user.createTime = #{EQ_createTime}
+        </if>
+        <if test="NEQ_createTime !=null and NEQ_createTime !=''">
+            AND sys_user.createTime != #{NEQ_createTime}
+        </if>
+        <if test="LIKE_createTime !=null and LIKE_createTime !=''">
+            AND sys_user.createTime like CONCAT('%',#{LIKE_createTime},'%')
+        </if>
+        <if test="LIKEP_createTime !=null and LIKEP_createTime !=''">
+            AND sys_user.createTime like CONCAT(#{LIKEP_createTime},'%')
+        </if>
+        <if test="PLIKE_createTime !=null and PLIKE_createTime !=''">
+            AND sys_user.createTime like CONCAT('%',#{PLIKE_createTime})
+        </if>
+        <if test="GT_createTime !=null and GT_createTime !=''">
+            AND sys_user.createTime > #{GT_createTime}
+        </if>
+        <if test="LT_createTime !=null and LT_createTime !=''">
+            AND sys_user.createTime &lt; #{LT_createTime}
+        </if>
+        <if test="GTE_createTime !=null and GTE_createTime !=''">
+            AND sys_user.createTime >= #{GTE_createTime}
+        </if>
+        <if test="LTE_createTime !=null and LTE_createTime !=''">
+            AND sys_user.createTime &lt;= #{LTE_createTime}
+        </if>
+        <if test="IN_createTime !=null and IN_createTime !=''">
+            AND sys_user.createTime IN
+            <foreach item="item" index="index" collection="IN_createTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_createTime !=null and NIN_createTime !=''">
+            AND sys_user.createTime NOT IN
+            <foreach item="item" index="index" collection="NIN_createTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- createTime 结束 -->
+        <!-- updateBy 开始 -->
+        <if test="EQ_updateBy !=null and EQ_updateBy !=''">
+            AND sys_user.updateBy = #{EQ_updateBy}
+        </if>
+        <if test="NEQ_updateBy !=null and NEQ_updateBy !=''">
+            AND sys_user.updateBy != #{NEQ_updateBy}
+        </if>
+        <if test="LIKE_updateBy !=null and LIKE_updateBy !=''">
+            AND sys_user.updateBy like CONCAT('%',#{LIKE_updateBy},'%')
+        </if>
+        <if test="LIKEP_updateBy !=null and LIKEP_updateBy !=''">
+            AND sys_user.updateBy like CONCAT(#{LIKEP_updateBy},'%')
+        </if>
+        <if test="PLIKE_updateBy !=null and PLIKE_updateBy !=''">
+            AND sys_user.updateBy like CONCAT('%',#{PLIKE_updateBy})
+        </if>
+        <if test="GT_updateBy !=null and GT_updateBy !=''">
+            AND sys_user.updateBy > #{GT_updateBy}
+        </if>
+        <if test="LT_updateBy !=null and LT_updateBy !=''">
+            AND sys_user.updateBy &lt; #{LT_updateBy}
+        </if>
+        <if test="GTE_updateBy !=null and GTE_updateBy !=''">
+            AND sys_user.updateBy >= #{GTE_updateBy}
+        </if>
+        <if test="LTE_updateBy !=null and LTE_updateBy !=''">
+            AND sys_user.updateBy &lt;= #{LTE_updateBy}
+        </if>
+        <if test="IN_updateBy !=null and IN_updateBy !=''">
+            AND sys_user.updateBy IN
+            <foreach item="item" index="index" collection="IN_updateBy"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_updateBy !=null and NIN_updateBy !=''">
+            AND sys_user.updateBy NOT IN
+            <foreach item="item" index="index" collection="NIN_updateBy"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- updateBy 结束 -->
+        <!-- updateByName 开始 -->
+        <if test="EQ_updateByName !=null and EQ_updateByName !=''">
+            AND sys_user.updateByName = #{EQ_updateByName}
+        </if>
+        <if test="NEQ_updateByName !=null and NEQ_updateByName !=''">
+            AND sys_user.updateByName != #{NEQ_updateByName}
+        </if>
+        <if test="LIKE_updateByName !=null and LIKE_updateByName !=''">
+            AND sys_user.updateByName like CONCAT('%',#{LIKE_updateByName},'%')
+        </if>
+        <if test="LIKEP_updateByName !=null and LIKEP_updateByName !=''">
+            AND sys_user.updateByName like CONCAT(#{LIKEP_updateByName},'%')
+        </if>
+        <if test="PLIKE_updateByName !=null and PLIKE_updateByName !=''">
+            AND sys_user.updateByName like CONCAT('%',#{PLIKE_updateByName})
+        </if>
+        <if test="GT_updateByName !=null and GT_updateByName !=''">
+            AND sys_user.updateByName > #{GT_updateByName}
+        </if>
+        <if test="LT_updateByName !=null and LT_updateByName !=''">
+            AND sys_user.updateByName &lt; #{LT_updateByName}
+        </if>
+        <if test="GTE_updateByName !=null and GTE_updateByName !=''">
+            AND sys_user.updateByName >= #{GTE_updateByName}
+        </if>
+        <if test="LTE_updateByName !=null and LTE_updateByName !=''">
+            AND sys_user.updateByName &lt;= #{LTE_updateByName}
+        </if>
+        <if test="IN_updateByName !=null and IN_updateByName !=''">
+            AND sys_user.updateByName IN
+            <foreach item="item" index="index" collection="IN_updateByName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_updateByName !=null and NIN_updateByName !=''">
+            AND sys_user.updateByName NOT IN
+            <foreach item="item" index="index" collection="NIN_updateByName"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- updateByName 结束 -->
+        <!-- updateTime 开始 -->
+        <if test="EQ_updateTime !=null and EQ_updateTime !=''">
+            AND sys_user.updateTime = #{EQ_updateTime}
+        </if>
+        <if test="NEQ_updateTime !=null and NEQ_updateTime !=''">
+            AND sys_user.updateTime != #{NEQ_updateTime}
+        </if>
+        <if test="LIKE_updateTime !=null and LIKE_updateTime !=''">
+            AND sys_user.updateTime like CONCAT('%',#{LIKE_updateTime},'%')
+        </if>
+        <if test="LIKEP_updateTime !=null and LIKEP_updateTime !=''">
+            AND sys_user.updateTime like CONCAT(#{LIKEP_updateTime},'%')
+        </if>
+        <if test="PLIKE_updateTime !=null and PLIKE_updateTime !=''">
+            AND sys_user.updateTime like CONCAT('%',#{PLIKE_updateTime})
+        </if>
+        <if test="GT_updateTime !=null and GT_updateTime !=''">
+            AND sys_user.updateTime > #{GT_updateTime}
+        </if>
+        <if test="LT_updateTime !=null and LT_updateTime !=''">
+            AND sys_user.updateTime &lt; #{LT_updateTime}
+        </if>
+        <if test="GTE_updateTime !=null and GTE_updateTime !=''">
+            AND sys_user.updateTime >= #{GTE_updateTime}
+        </if>
+        <if test="LTE_updateTime !=null and LTE_updateTime !=''">
+            AND sys_user.updateTime &lt;= #{LTE_updateTime}
+        </if>
+        <if test="IN_updateTime !=null and IN_updateTime !=''">
+            AND sys_user.updateTime IN
+            <foreach item="item" index="index" collection="IN_updateTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_updateTime !=null and NIN_updateTime !=''">
+            AND sys_user.updateTime NOT IN
+            <foreach item="item" index="index" collection="NIN_updateTime"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- updateTime 结束 -->
+        <!-- version 开始 -->
+        <if test="EQ_version !=null and EQ_version !=''">
+            AND sys_user.version = #{EQ_version}
+        </if>
+        <if test="NEQ_version !=null and NEQ_version !=''">
+            AND sys_user.version != #{NEQ_version}
+        </if>
+        <if test="LIKE_version !=null and LIKE_version !=''">
+            AND sys_user.version like CONCAT('%',#{LIKE_version},'%')
+        </if>
+        <if test="LIKEP_version !=null and LIKEP_version !=''">
+            AND sys_user.version like CONCAT(#{LIKEP_version},'%')
+        </if>
+        <if test="PLIKE_version !=null and PLIKE_version !=''">
+            AND sys_user.version like CONCAT('%',#{PLIKE_version})
+        </if>
+        <if test="GT_version !=null and GT_version !=''">
+            AND sys_user.version > #{GT_version}
+        </if>
+        <if test="LT_version !=null and LT_version !=''">
+            AND sys_user.version &lt; #{LT_version}
+        </if>
+        <if test="GTE_version !=null and GTE_version !=''">
+            AND sys_user.version >= #{GTE_version}
+        </if>
+        <if test="LTE_version !=null and LTE_version !=''">
+            AND sys_user.version &lt;= #{LTE_version}
+        </if>
+        <if test="IN_version !=null and IN_version !=''">
+            AND sys_user.version IN
+            <foreach item="item" index="index" collection="IN_version"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="NIN_version !=null and NIN_version !=''">
+            AND sys_user.version NOT IN
+            <foreach item="item" index="index" collection="NIN_version"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <!-- version 结束 -->
+    </sql>
+
+    <select id="getUser" resultType="UserModel">
+        SELECT
+        <include refid="userColumns"></include>
+        FROM sys_user
+        WHERE userName = #{userName}
+        ;
     </select>
+
+    <insert id="insertUser" parameterType="UserModel">
+        INSERT INTO sys_user
+        (<include refid="userColumns"></include>)
+        VALUES
+        (<include refid="userValues"></include>)
+        ;
+    </insert>
+
+    <insert id="insertUserBatch" parameterType="java.util.List">
+        INSERT INTO sys_user
+        (<include refid="userColumns"></include>)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (<include refid="userValuesBatch"></include>)
+        </foreach>
+        ;
+    </insert>
+
+    <select id="getUserList" resultType="UserModel">
+        SELECT
+        <include refid="userColumns"></include>
+        FROM
+        sys_user
+        <where>
+            <include refid="userWheres"></include>
+        </where>
+        ;
+    </select>
+
+    <update id="updateUser" parameterType="UserModel">
+        UPDATE sys_user
+        <set>
+            <include refid="userSets"></include>
+        </set>
+        WHERE userName = #{userName}
+        <if test="version != null">and `version`= #{version}</if>
+        ;
+    </update>
+
+    <!-- ===========================================代码生成结束============================================ -->
 </mapper>

@@ -30,7 +30,6 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter {
             return true;
         }
         List<String> urls = userService.findPermissionUrl(subject.getPrincipal().toString());
-
         return urls.contains(curUrl);
     }
 
@@ -38,8 +37,8 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter {
      * 获取当前URL+Parameter
      *
      * @param request 拦截请求request
-     * @author lance
      * @return 返回完整URL
+     * @author lance
      * @since 2014年12月18日 下午3:09:26
      */
     private String getRequestUrl(ServletRequest request) {

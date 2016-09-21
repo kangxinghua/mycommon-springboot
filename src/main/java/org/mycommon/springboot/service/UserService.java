@@ -16,12 +16,15 @@ import java.util.List;
 @Service
 public class UserService {
     private static Logger logger = LogManager.getLogger(UserService.class);
+    public static final String HASH_ALGORITHM = "SHA-1";
+    public static final int HASH_INTERATIONS = 1024;
+
     @Autowired
     private UserMapper userMapper;
 
     public List<String> findPermissionUrl(String userName) {
         List<String> urls = Lists.newArrayList();
-        urls.add("000000000000");
+        urls.add("/");
         return urls;
     }
 

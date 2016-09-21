@@ -6,6 +6,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+import org.mycommon.modules.utils.Encodes;
 import org.mycommon.springboot.model.UserModel;
 import org.mycommon.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,10 @@ public class UserRealm extends AuthorizingRealm {
 
 	public UserRealm() {
 		setName("UserRealm");
-		// 采用MD5加密
-		setCredentialsMatcher(new HashedCredentialsMatcher("md5"));
+		// 采用SHA-1加密
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(UserService.HASH_ALGORITHM);
+		matcher.setHashIterations(UserService.HASH_INTERATIONS);
+		setCredentialsMatcher(matcher);
 	}
 
 	//权限资源角色
@@ -42,14 +46,18 @@ public class UserRealm extends AuthorizingRealm {
 	//登录验证
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken upt = (UsernamePasswordToken) token;
-		String userName = upt.getUsername();
-		UserModel userModel = userService.getUser(userName);
+		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
+		UserModel userModel = userService.getUser(usernamePasswordToken.getUsername());
+		if (userModel != null) {
+//			if (userModel.getStatus() != 1) {
+//				throw new LockedAccountException(); // 帐号锁定
+//			}
+			byte[] salt = Encodes.decodeHex(userModel.getSalt());
 
-		if (userModel == null) {
-			throw new UnknownAccountException();
+			return new SimpleAuthenticationInfo(userModel.getUserName(),
+					userModel.getPassword(), ByteSource.Util.bytes(salt), getName());
+		} else {
+			return null;
 		}
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, userModel.getPassword(), getName());
-		return info;
 	}
 }

@@ -3,6 +3,8 @@ package org.mycommon.springboot.config;
 import com.google.common.collect.Maps;
 import freemarker.template.TemplateException;
 import org.mycommon.springboot.config.freemarker.MyTagFreeMarkerConfigurer;
+import org.mycommon.springboot.utils.Global;
+import org.mycommon.springboot.utils.UserUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -25,7 +27,8 @@ public class FreemarkerConfig {
         freeMarkerConfigurer.setDefaultEncoding("UTF-8");
 
         Map<String, Object> freemarkerVariables = Maps.newHashMap();
-//        freemarkerVariables.put("limit", new LimitMethod());
+        freemarkerVariables.put("global", new Global());
+        freemarkerVariables.put("userUtils", new UserUtils());
 //        freemarkerVariables.put("hasPermission", new HasPermissionDirective(molgenisPermissionService));
 //        freemarkerVariables.put("notHasPermission", new NotHasPermissionDirective(molgenisPermissionService));
 //        addFreemarkerVariables(freemarkerVariables);
